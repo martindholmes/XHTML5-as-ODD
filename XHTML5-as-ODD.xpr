@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <meta>
+        <filters directoryPatterns="" filePatterns="\QXHTML5-as-ODD.xpr\E" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="XHTML5-as-ODD.xpr">
+        <folder path="."/>
+    </projectTree>
+</project>
