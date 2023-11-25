@@ -639,12 +639,19 @@
                   <attList>
                      <attDef ident="lang" usage="opt">
                         <gloss>Specifies the language of the content of the element.</gloss>
+                        <!-- NOTE: This should be constrained using a regex. -->
                         <datatype maxOccurs="1">
                            <dataRef key="teidata.word"/>
                         </datatype>
                         <valList type="semi">
                            <valItem ident="en"><gloss>English</gloss></valItem>
                            <valItem ident="fr"><gloss>French</gloss></valItem>
+                           <valItem ident="it"><gloss>Italian</gloss></valItem>
+                           <valItem ident="jp"><gloss>Japanese</gloss></valItem>
+                           <valItem ident="zh"><gloss>Chinese</gloss></valItem>
+                           <valItem ident="de"><gloss>German</gloss></valItem>
+                           <valItem ident="la"><gloss>Latin</gloss></valItem>
+                           <valItem ident="es"><gloss>Spanish</gloss></valItem>
                         </valList>
                      </attDef>
                   </attList>
@@ -663,7 +670,7 @@
                      <attDef ident="style" usage="opt">
                         <gloss>The style attribute provides one-off style options for specific
                         and unusual cases. Do not use this unless you know that the element
-                        you're styling is unlike any other element on the site.</gloss>
+                        you're styling is unlike any other element in the project.</gloss>
                         <datatype maxOccurs="1">
                            <dataRef key="teidata.text"/>
                         </datatype>
@@ -700,15 +707,6 @@
                            <valItem ident="songTitle">
                               <gloss>Song title (will be surrounded with quotes)</gloss>
                            </valItem>
-                           <valItem ident="italicPoemTitle">
-                              <gloss>Poem title as presented in EB11 (in italics rather than quotes)</gloss>
-                           </valItem>
-                           <valItem ident="italicEssayTitle">
-                              <gloss>Essay or article title as presented in EB11 (in italics rather than quotes)</gloss>
-                           </valItem>
-                           <valItem ident="italicSongTitle">
-                              <gloss>Song title as presented in EB11 (in italics rather than quotes)</gloss>
-                           </valItem>
                            <valItem ident="articleTitle">
                               <gloss>Article title (will be surrounded with quotes)</gloss>
                            </valItem>
@@ -717,6 +715,9 @@
                            </valItem>
                            <valItem ident="persName">
                               <gloss>The name of a person</gloss>
+                           </valItem>
+                           <valItem ident="forename">
+                              <gloss>The forename of a person, usually inside a persName.</gloss>
                            </valItem>
                            <valItem ident="surname">
                               <gloss>The surname of a person, usually inside a persName.</gloss>
@@ -773,7 +774,7 @@
                      </sch:pattern>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noQuotesInText" scheme="schematron">
+               <constraintSpec ident="xao-noQuotesInText" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:*[text()][not(ancestor-or-self::xh:script or ancestor-or-self::xh:style or ancestor-or-self::xh:code or ancestor-or-self::xh:pre)]">
                         <sch:assert test="not(text()[matches(., $straightQuotes)])">
@@ -784,7 +785,8 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="onlyPermittedImgAttributes" scheme="schematron">
+               <!-- This should probably be discarded. -->
+               <constraintSpec ident="xao-onlyPermittedImgAttributes" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:img">
                         <sch:assert test="every $att in @* satisfies local-name($att) = ('src', 'alt', 'title', 'width', 'height', 'id', 'style', 'class')">
@@ -793,7 +795,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noBadImageFilenames" scheme="schematron">
+               <constraintSpec ident="xao-noBadImageFilenames" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:img">
                         <sch:assert test="matches(@src, '^[a-zA-Z0-9/\._\-]+$')">
@@ -808,7 +810,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="spacesAfterPeriods" scheme="schematron">
+               <constraintSpec ident="xao-spacesAfterPeriods" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:*[not(self::xh:code or self::xh:pre)][text()]">
                         <sch:assert test="not(text()[matches(., '[^\.A-Z]\.[A-Z]')])">
@@ -817,7 +819,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noSpacedPeriodEllipses" scheme="schematron">
+               <constraintSpec ident="xao-noSpacedPeriodEllipses" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:*[not(self::xh:code or self::xh:pre)][text()]">
                         <sch:assert test="not(text()[matches(., '\.\s*\.\s*\.')])">
@@ -827,7 +829,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noSpacesInHrefs" scheme="schematron">
+               <constraintSpec ident="xao-noSpacesInHrefs" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:a">
                         <sch:assert test="not(matches(@href, '\s+'))">
@@ -836,7 +838,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noLinksInH3s" scheme="schematron">
+               <constraintSpec ident="xao-noLinksInH3s" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:h3">
                         <sch:assert test="not(xh:a[@href])">
@@ -845,7 +847,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="noLinksInLinks" scheme="schematron">
+               <constraintSpec ident="xao-noLinksInLinks" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:a">
                         <sch:assert test="not(descendant::xh:a[@href])">
@@ -854,7 +856,7 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <constraintSpec ident="periodsAndCommasOutsideLinks" scheme="schematron">
+               <constraintSpec ident="xao-periodsAndCommasOutsideLinks" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:a[@href]">
                         <sch:assert test="not(matches(., '[\.,:;]\s*$')) or matches(., '((Esq\.)|(A\.\s*W\.)|(\.\s*\.\s*\.))$')">
@@ -864,7 +866,7 @@
                   </constraint>
                </constraintSpec>
                <!-- Excessive style constraint? -->
-               <constraintSpec ident="useProperEllipsis" scheme="schematron">
+               <constraintSpec ident="xao-useProperEllipsis" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:*[not(self::xh:code or self::xh:pre)][text()]">
                         <sch:assert test="not(text()[matches(., '\.\.\.')])">
@@ -873,7 +875,8 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               
+               <!-- This is a mostly idiosyncratic preference, because having a reliable
+                    id on the root makes processing easier for document collections. -->
                <constraintSpec ident="xao-idShouldMatchFilename" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:article">
