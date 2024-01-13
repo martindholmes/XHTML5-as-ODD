@@ -56,9 +56,83 @@
                   <desc>Base schema module for all xhtml5-as-odd elements defined in this ODD.</desc>
                </moduleSpec>
                
+               <elementSpec ident="html">
+                  <gloss>The root html element for normal complete documents</gloss>
+                  <desc>The html element is only root element allowed for conventional 
+                  HTML5 documents, but we also allow other block elements to serve as 
+                  root for pragmatic reasons.</desc>
+                  <classes>
+                     <memberOf key="att.identifiable"/>
+                     <memberOf key="att.hasLang"/>
+                     <memberOf key="att.classable"/>
+                  </classes>
+                  <content>
+                     <sequence>
+                        <elementRef key="head"/>
+                        <elementRef key="body"/>
+                     </sequence>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="head">
+                  <gloss>The HTML head element</gloss>
+                  <desc>The head element contains links to (external-only) CSS and JS, as 
+                  well as a title element and meta tags. We impose an order here which is not
+                  enforced by the HTML5 standard, placing the single title element first,
+                  followed by meta tags, CSS, and script. One of the meta tags must be a 
+                  charset specification.</desc>
+                  <content>
+                     <sequence>
+                        <elementRef key="title" minOccurs="1" maxOccurs="1"/>
+                        <elementRef key="meta" minOccurs="1" maxOccurs="unbounded"/>
+                        <elementRef key="link" minOccurs="0" maxOccurs="unbounded"/>
+                        <elementRef key="script" minOccurs="0" maxOccurs="unbounded"/>
+                     </sequence>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="body">
+                  <gloss>The principal container for page content as shown in the browser</gloss>
+                  <desc>In HTML5, the body element allows all flow content, but we are much more
+                  constrained here, allowing only block-level elements.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.identifiable"/>
+                  </classes>
+                  <content>
+                     <!-- There are several canonical page structures which we attempt
+                        to express as a single sequence. We want to allow for some variation
+                        but impose some fairly severe logic. -->
+
+                     <!-- h1 with divs, sections, main, or article, with asides and footers
+                             scattered around. -->
+                     <sequence>
+                        <!-- You can have a plain h1, or you can have a header element. -->
+                        <alternate minOccurs="0" maxOccurs="1">
+                           <elementRef key="h1" minOccurs="1" maxOccurs="1"/>
+                           <elementRef key="header" minOccurs="1" maxOccurs="1"/>
+                        </alternate>
+                        <!-- Now you can have an optional aside. -->
+                        <elementRef key="aside" minOccurs="0" maxOccurs="1"/>
+                        <!-- Then you can have divs, sections, an article, or a main element. -->
+                        <alternate maxOccurs="1">
+                           <elementRef key="div" minOccurs="1" maxOccurs="unbounded"/>
+                           <elementRef key="section" minOccurs="1" maxOccurs="unbounded"/>
+                           <elementRef key="main" minOccurs="1" maxOccurs="1"/>
+                           <elementRef key="article" minOccurs="1" maxOccurs="1"/>
+                        </alternate>
+                        <!-- Now you can have another optional aside. -->
+                        <elementRef key="aside" minOccurs="0" maxOccurs="1"/>
+                        <!-- Finally an optional footer. -->
+                        <elementRef key="footer" minOccurs="0" maxOccurs="1"/>
+                     </sequence>    
+                  </content>
+               </elementSpec>
+               
                <elementSpec ident="main" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>The main element, containing block content</gloss>
-                  <desc>This is used as the root element for some content documents.</desc>
+                  <desc>This is used as the root element for some content documents. This
+                  allows divs, dialogs, or articles in alternation.</desc>
                   <classes>
                      <memberOf key="att.identifiable"/>
                      <memberOf key="att.hasTitle"/>
@@ -627,10 +701,10 @@
                      </sequence>
                   </content>
                </macroSpec>
-               <classSpec type="model" ident="model.xaoPhrase" module="xhtml5-as-odd">
+               <classSpec ident="model.xaoPhrase" type="model" module="xhtml5-as-odd">
                   <desc>Groups elements which can appear at the phrase level.</desc>
                </classSpec>
-               <classSpec type="model" ident="model.xaoBlockBody" module="xhtml5-as-odd">
+               <classSpec ident="model.xaoBlockBody" type="model" module="xhtml5-as-odd">
                   <desc>Groups elements which can appear below the heading in an article or section.</desc>
                </classSpec>
                
@@ -657,7 +731,7 @@
                   </attList>
                </classSpec>
                
-               <classSpec type="atts" ident="att.classable" module="xhtml5-as-odd">
+               <classSpec ident="att.classable" type="atts" module="xhtml5-as-odd">
                   <desc>Groups elements which can have a class attribute.</desc>
                   <attList>
                      <attDef ident="class" usage="opt">
@@ -677,7 +751,7 @@
                      </attDef>
                   </attList>
                </classSpec>
-               <classSpec type="atts" ident="att.identifiable" module="xhtml5-as-odd">
+               <classSpec ident="att.identifiable" type="atts" module="xhtml5-as-odd">
                   <desc>Groups elements which may have an id attribute.</desc>
                   <attList>
                      <attDef ident="id" usage="opt">
@@ -687,7 +761,7 @@
                      </attDef>
                   </attList>
                </classSpec>
-               <classSpec type="atts" ident="att.hasnametype" module="xhtml5-as-odd">
+               <classSpec ident="att.hasnametype" type="atts" module="xhtml5-as-odd">
                   <gloss>Groups elements which have the @data-nametype attribute.</gloss>
                   <attList>
                      <attDef ident="data-nametype" usage="opt">
@@ -726,11 +800,11 @@
                      </attDef>
                   </attList>
                </classSpec>
-               <classSpec type="atts" ident="att.formatted" module="xhtml5-as-odd">
+               <classSpec ident="att.formatted" type="atts" module="xhtml5-as-odd">
                   <gloss>Groups elements which have the ... TODO...</gloss>
                </classSpec>
               
-              <classSpec type="atts" ident="att.hasHref" module="xhtml5-as-odd">
+              <classSpec ident="att.hasHref" type="atts" module="xhtml5-as-odd">
                 <gloss>Groups elements which have the <att>href</att> attribute.</gloss>
                 <attList>
                   <attDef ident="href" usage="req">
@@ -741,7 +815,7 @@
                 </attList>
               </classSpec>
                
-               <classSpec type="atts" ident="att.hasTitle" module="xhtml5-as-odd">
+               <classSpec ident="att.hasTitle" type="atts" module="xhtml5-as-odd">
                   <gloss>Groups elements which have the <att>title</att> attribute.</gloss>
                   <attList>
                      <attDef ident="title" usage="opt">
@@ -752,7 +826,7 @@
                   </attList>
                </classSpec>
                
-               <classSpec type="atts" ident="att.hasTabindex" module="xhtml5-as-odd">
+               <classSpec ident="att.hasTabindex" type="atts" module="xhtml5-as-odd">
                   <gloss>Groups elements which have the <att>tabindex</att> attribute.</gloss>
                   <attList>
                      <attDef ident="tabindex" usage="opt">
