@@ -467,6 +467,21 @@
                      <macroRef key="macro.xaoParaContent"/>
                   </content>
                </elementSpec>
+               
+               <elementSpec ident="address" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Address</gloss>
+                  <desc>Contains contact information for a person or organization related to the nearest
+                  ancestor <gi>article</gi> or <gi>body</gi> element.</desc>
+                  <classes>
+                     <memberOf key="model.xaoPhrase"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasId"/>
+                  </classes>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
+                  </content>
+               </elementSpec>
+               
                <elementSpec ident="strong" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>Strong text</gloss>
                   <desc>Text that needs to be highlighted because it is important; will be rendered by
