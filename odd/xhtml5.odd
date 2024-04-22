@@ -260,7 +260,7 @@
                      </alternate>
                   </content>
                </elementSpec>
-               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+               <elementSpec ident="h4" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>Level 4 heading</gloss>
                   <desc>The h4 (level 4 heading) element provides the heading for 
                      a sub-sub-subsection of a page.</desc>
@@ -276,7 +276,7 @@
                      </alternate>
                   </content>
                </elementSpec>
-               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+               <elementSpec ident="h5" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>Level 5 heading</gloss>
                   <desc>The h5 (level 5 heading) element provides a low-level heading.</desc>
                   <classes>
