@@ -186,7 +186,7 @@
                   </classes>
                   <content>
                      <sequence>
-                        <elementRef key="h3" maxOccurs="1"/>
+                        <elementRef key="h3" minOccurs="0" maxOccurs="1"/>
                         <macroRef key="macro.xaoBlockContent"/>
                      </sequence>
                   </content>
@@ -212,10 +212,10 @@
                   </content>
                </elementSpec>
                
-               <elementSpec ident="h2" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
-                  <gloss>Main page  heading</gloss>
-                  <desc>The h2 (level 2 heading) element provides the heading for 
-                  article content.</desc>
+               <elementSpec ident="h1" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 1 heading</gloss>
+                  <desc>The h1(level 2 heading) element provides the heading for 
+                     an entire page.</desc>
                   <classes>
                      <memberOf key="model.xaoBlockHeading"/>
                      <memberOf key="att.classable"/>
@@ -227,24 +227,78 @@
                         <elementRef key="br"/>
                      </alternate>
                   </content>
-                  <constraintSpec ident="modernArticleMustHaveAuthor" scheme="schematron">
-                     <constraint>
-                        <sch:rule context="xh:article[starts-with(@id, 'mod_')][count(descendant::xh:p) gt 1]/xh:h2">
-                           <sch:assert test="descendant::xh:a[@href][@data-nametype='persName']"> 
-                              The heading for a modern article must contain a link to the name of 
-                              its author.
-                           </sch:assert>
-                        </sch:rule>
-                     </constraint>
-                  </constraintSpec>
                </elementSpec>
-               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
-                  <gloss>Section heading</gloss>
-                  <desc>The h3 (level 3 heading) element provides the heading for 
-                  sections (if any) inside the main element.</desc>
+               <elementSpec ident="h2" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 2 heading</gloss>
+                  <desc>The h2 (level 2 heading) element provides the heading for 
+                  a major subsection of a page.</desc>
                   <classes>
                      <memberOf key="model.xaoBlockHeading"/>
                      <memberOf key="att.classable"/>
+                     <memberOf key="att.hasTitle"/>
+                  </classes>
+                  <content>
+                     <alternate minOccurs="1" maxOccurs="unbounded">
+                        <macroRef key="macro.xaoParaContent"/>
+                        <elementRef key="br"/>
+                     </alternate>
+                  </content>
+               </elementSpec>
+               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 3 heading</gloss>
+                  <desc>The h3 (level 3 heading) element provides the heading for 
+                  a secondary subsection of a page.</desc>
+                  <classes>
+                     <memberOf key="model.xaoBlockHeading"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasTitle"/>
+                  </classes>
+                  <content>
+                     <alternate minOccurs="1" maxOccurs="unbounded">
+                        <macroRef key="macro.xaoParaContent"/>
+                        <elementRef key="br"/>
+                     </alternate>
+                  </content>
+               </elementSpec>
+               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 4 heading</gloss>
+                  <desc>The h4 (level 4 heading) element provides the heading for 
+                     a sub-sub-subsection of a page.</desc>
+                  <classes>
+                     <memberOf key="model.xaoBlockHeading"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasTitle"/>
+                  </classes>
+                  <content>
+                     <alternate minOccurs="1" maxOccurs="unbounded">
+                        <macroRef key="macro.xaoParaContent"/>
+                        <elementRef key="br"/>
+                     </alternate>
+                  </content>
+               </elementSpec>
+               <elementSpec ident="h3" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 5 heading</gloss>
+                  <desc>The h5 (level 5 heading) element provides a low-level heading.</desc>
+                  <classes>
+                     <memberOf key="model.xaoBlockHeading"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasTitle"/>
+                  </classes>
+                  <content>
+                     <alternate minOccurs="1" maxOccurs="unbounded">
+                        <macroRef key="macro.xaoParaContent"/>
+                        <elementRef key="br"/>
+                     </alternate>
+                  </content>
+               </elementSpec>
+               <elementSpec ident="h6" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Level 6 heading</gloss>
+                  <desc>The h6 (level 6 heading) element is the lowest level of heading 
+                     available.</desc>
+                  <classes>
+                     <memberOf key="model.xaoBlockHeading"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasTitle"/>
                   </classes>
                   <content>
                      <alternate minOccurs="1" maxOccurs="unbounded">
@@ -391,13 +445,27 @@
                   </content>
                   <!-- NOTE: Leaving this in place, but we expect this to be 
                    changed or expanded. -->
-                  <constraintSpec ident="spansMustHavenametypeStyleOrClass" scheme="schematron">
+                  <constraintSpec ident="spansMustHaveNametypeStyleOrClass" scheme="schematron">
                      <constraint>
+                        <sch:rule context="xh:span">
                         <sch:assert test="@class or @style or @data-nametype"> 
                            A span element must have a class attribute, a data-nametype attribute, or a style attribute.
                         </sch:assert>
+                        </sch:rule>
                      </constraint>
                   </constraintSpec>
+               </elementSpec>
+               <elementSpec ident="abbr" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Abbreviation</gloss>
+                  <desc>Any abbreviation, acronym, or similar term can be tagged with this element,
+                     and the <att>title</att> attribute can be used to provide an expansion.</desc>
+                  <classes>
+                     <memberOf key="model.xaoPhrase"/>
+                     <memberOf key="att.classable"/>
+                  </classes>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
+                  </content>
                </elementSpec>
                <elementSpec ident="strong" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>Strong text</gloss>
@@ -433,11 +501,12 @@
                   </classes>
                   <constraintSpec ident="imgWithoutCaptionNeedsAlt" scheme="schematron">
                      <constraint>
-                        <!--<sch:ns uri="http://www.w3.org/1999/xhtml" prefix="xh"/>-->
-                        <sch:assert test="@alt or following-sibling::xh:figcaption or ancestor::xh:ul[@class='gallery']"> 
-                           If your img element is not inside a figure element with a figcaption, 
-                           then it requires the @alt attribute to provide help for visually-impaired users.
-                        </sch:assert>
+                        <sch:rule context="xh:img">
+                           <sch:assert test="@alt or following-sibling::xh:figcaption"> 
+                              If your img element is not inside a figure element with a figcaption, 
+                              then it requires the @alt attribute to provide help for visually-impaired users.
+                           </sch:assert>
+                        </sch:rule>
                      </constraint>
                   </constraintSpec>
                   <attList>
@@ -772,9 +841,6 @@
                           <valItem ident="periodicalTitle">
                             <gloss>Title of newspaper, magazine, or journal (will be italicized)</gloss>
                           </valItem>
-                           <valItem ident="periodicalTitle">
-                              <gloss>Periodical title (will be italicized)</gloss>
-                           </valItem>
                            <valItem ident="poemTitle">
                               <gloss>Poem title (will be surrounded with quotes)</gloss>
                            </valItem>
@@ -783,9 +849,6 @@
                            </valItem>
                            <valItem ident="articleTitle">
                               <gloss>Article title (will be surrounded with quotes)</gloss>
-                           </valItem>
-                           <valItem ident="foreign">
-                              <gloss>Text in a foreign language (will be italicized)</gloss>
                            </valItem>
                            <valItem ident="persName">
                               <gloss>The name of a person</gloss>
@@ -859,27 +922,11 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
-               <!-- This should probably be discarded. -->
-               <constraintSpec ident="xao-onlyPermittedImgAttributes" scheme="schematron">
-                  <constraint>
-                     <sch:rule context="xh:img">
-                        <sch:assert test="every $att in @* satisfies local-name($att) = ('src', 'alt', 'title', 'width', 'height', 'id', 'style', 'class')">
-                           Only the following attributes are allowed on img: 'src', 'alt', 'title', 'id', 'style', 'class', 'width' and 'height'.
-                        </sch:assert>
-                     </sch:rule>
-                  </constraint>
-               </constraintSpec>
                <constraintSpec ident="xao-noBadImageFilenames" scheme="schematron">
                   <constraint>
                      <sch:rule context="xh:img">
                         <sch:assert test="matches(@src, '^[a-zA-Z0-9/\._\-]+$')">
                            Image file paths must be well-formed (no spaces or punctuation).
-                        </sch:assert>
-                        <sch:assert test="matches(@src, '^(images/)|(neighbourhoodMaps/)|(gallery/)')">
-                           Image file paths must begin with images/, neighbourhoodMaps/, or gallery/.
-                        </sch:assert>
-                        <sch:assert test="not(@data-lg-version) or matches(@data-lg-version, '^(images/)|(neighbourhoodMaps/)|(gallery/)')">
-                           Image file paths must begin with images/, neighbourhoodMaps/, or gallery/.
                         </sch:assert>
                      </sch:rule>
                   </constraint>
@@ -908,15 +955,6 @@
                      <sch:rule context="xh:a">
                         <sch:assert test="not(matches(@href, '\s+'))">
                            There should be no spaces in href attributes (links).
-                        </sch:assert>
-                     </sch:rule>
-                  </constraint>
-               </constraintSpec>
-               <constraintSpec ident="xao-noLinksInH3s" scheme="schematron">
-                  <constraint>
-                     <sch:rule context="xh:h3">
-                        <sch:assert test="not(xh:a[@href])">
-                           Don't place links inside h3 elements.
                         </sch:assert>
                      </sch:rule>
                   </constraint>
