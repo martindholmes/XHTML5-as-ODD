@@ -177,6 +177,22 @@
                   </attList>
                </elementSpec>
                
+               <elementSpec ident="aside" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>A portion of a document whose content is only indirectly related to the document's main content</gloss>
+                  <desc>The aside element encloses content which is tangentially related to the content around it. It is used for callouts, footnotes/endnotes, and similar content.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.identifiable"/>
+                     <memberOf key="att.hasTitle"/>
+                  </classes>
+                  <content>
+                     <sequence>
+                        <elementRef key="h4" minOccurs="0" maxOccurs="unbounded"/>
+                        <classRef key="model.xaoBlockBody" minOccurs="0" maxOccurs="unbounded"/>
+                     </sequence>
+                  </content>
+               </elementSpec>
+               
                <elementSpec ident="section" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>A subsection of a page</gloss>
                   <desc>If using sections, there must be at least two.</desc>
