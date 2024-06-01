@@ -529,6 +529,7 @@
                      <memberOf key="model.xaoBlockBody"/>
                      <memberOf key="att.classable"/>
                      <memberOf key="att.identifiable"/>
+                     <memberOf key="att.hasWidthAndHeight"/>
                   </classes>
                   <constraintSpec ident="imgWithoutCaptionNeedsAlt" scheme="schematron">
                      <constraint>
@@ -541,18 +542,6 @@
                      </constraint>
                   </constraintSpec>
                   <attList>
-                     <attDef ident="width" usage="opt">
-                        <desc>Width in pixels of the image.</desc>
-                        <datatype>
-                           <dataRef key="teidata.numeric"/>
-                        </datatype>
-                     </attDef>
-                     <attDef ident="height" usage="opt">
-                        <desc>Height in pixels of the image</desc>
-                        <datatype>
-                           <dataRef key="teidata.numeric"/>
-                        </datatype>
-                     </attDef>
                      <attDef ident="src" usage="req">
                         <gloss>path to the image (usually a relative path)</gloss>
                         <datatype>
@@ -575,6 +564,22 @@
                      </attDef>
                   </attList>
                </elementSpec>
+               <elementSpec ident="canvas" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>An area for drawing graphics and animations</gloss>
+                  <desc>The canvas element is a locus for drawing operations. Alternative content 
+                  may be provided in the form of a limited number of phrase-level elements. If 
+                  <att>width</att> and <att>height</att> are not provided, they default to 300
+                  and 150 respectively.</desc>
+                  <classes>
+                     <memberOf key="model.xaoPhrase"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.hasWidthAndHeight"/>
+                  </classes>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
+                  </content>
+               </elementSpec>
+               
                <elementSpec ident="em" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <desc>Emphasized text; will be rendered by default in italics.</desc>
                   <classes>
@@ -925,6 +930,25 @@
                   <attList>
                      <attDef ident="tabindex" usage="opt">
                         <datatype><dataRef key="nonNegativeInteger"/></datatype>
+                     </attDef>
+                  </attList>
+               </classSpec>
+               
+               <classSpec ident="att.hasWidthAndHeight" type="atts" module="xhtml5-as-odd">
+                  <gloss>Groups elements which have <att>width</att> and <att>height</att>
+                  attributes expressed as integers.</gloss>
+                  <attList>
+                     <attDef ident="width" usage="opt">
+                        <desc>Width in pixels of the image.</desc>
+                        <datatype>
+                           <dataRef key="teidata.numeric"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="height" usage="opt">
+                        <desc>Height in pixels of the image</desc>
+                        <datatype>
+                           <dataRef key="teidata.numeric"/>
+                        </datatype>
                      </attDef>
                   </attList>
                </classSpec>
