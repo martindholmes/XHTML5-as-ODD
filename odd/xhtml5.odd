@@ -564,6 +564,69 @@
                      </attDef>
                   </attList>
                </elementSpec>
+               <elementSpec ident="source" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>The <gi>source</gi> HTML element specifies one or more media resources for the, <gi>audio</gi> and <gi>video</gi> elements.</desc>
+                  <attList>
+                     <attDef ident="src" usage="req">
+                        <gloss>Pointer to the source media file.</gloss>
+                        <datatype>
+                           <dataRef key="teidata.pointer"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="type" usage="req">
+                        <gloss>The mime type specifies the applicable multimedia internet mail extension (MIME) media type</gloss>
+                        <!-- NOTE: THIS NEEDS TO BE NAILED DOWN TO SPECIFIC MIME TYPES. -->
+                        <datatype>
+                           <dataRef key="teidata.word"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="audio" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>The <gi>audio</gi> element provides an audio player to play an audio
+                  file specified in the child <gi>source</gi> element.</desc>
+                  <classes>
+                     <memberOf key="model.xaoPhrase"/>
+                     <memberOf key="model.xaoBlockBody"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.identifiable"/>
+                  </classes>
+                  <content>
+                     <elementRef key="source" minOccurs="1" maxOccurs="unbounded"/>
+                  </content>
+                  <attList>
+                     <attDef ident="controls" usage="rec">
+                        <valList type="closed">
+                           <valItem ident="controls">
+                              <gloss>Specifies that default audio controls should be provided for the player.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="video" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>The <gi>video</gi> element provides a video player to play a video
+                     file specified in the child <gi>source</gi> element.</desc>
+                  <classes>
+                     <memberOf key="model.xaoPhrase"/>
+                     <memberOf key="model.xaoBlockBody"/>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.identifiable"/>
+                     <memberOf key="att.hasWidthAndHeight"/>
+                  </classes>
+                  <content>
+                     <elementRef key="source" minOccurs="1" maxOccurs="unbounded"/>
+                  </content>
+                  <attList>
+                     <attDef ident="controls" usage="rec">
+                        <valList type="closed">
+                           <valItem ident="controls">
+                              <gloss>Specifies that default video controls should be provided for the player.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
                <elementSpec ident="canvas" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>An area for drawing graphics and animations</gloss>
                   <desc>The canvas element is a locus for drawing operations. Alternative content 
