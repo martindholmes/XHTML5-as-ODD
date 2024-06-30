@@ -521,6 +521,29 @@
                      <macroRef key="macro.xaoParaContent"/>
                   </content>
                </elementSpec>
+               
+               <elementSpec ident="colgroup" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Column group.</gloss>
+                  <desc>Defines a group of columns within a table.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                  </classes>
+                  <content>
+                     <elementRef key="col" minOccurs="1" maxOccurs="unbounded"/>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="col" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>A table column.</gloss>
+                  <desc>Specifies a table column within a <gi>colgroup</gi> element.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                  </classes>
+                  <content>
+                     <empty/>
+                  </content>
+               </elementSpec>
+               
                <elementSpec ident="img" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <desc>Image element. May be rendered inline or as a block, depending on where it
                      appears in the document structure.</desc>
@@ -846,6 +869,7 @@
                   <content>
                      <sequence>
                         <elementRef key="caption" minOccurs="0" maxOccurs="1"/>
+                        <elementRef key="colgroup" minOccurs="0" maxOccurs="unbounded"/>
                         <elementRef key="tr" minOccurs="1" maxOccurs="unbounded"/>
                      </sequence>
                   </content>
