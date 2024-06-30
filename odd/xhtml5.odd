@@ -56,7 +56,7 @@
                   <desc>Base schema module for all xhtml5-as-odd elements defined in this ODD.</desc>
                </moduleSpec>
                
-               <elementSpec ident="html">
+               <elementSpec ident="html" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>The root html element for normal complete documents</gloss>
                   <desc>The html element is only root element allowed for conventional 
                   HTML5 documents, but we also allow other block elements to serve as 
@@ -74,7 +74,7 @@
                   </content>
                </elementSpec>
                
-               <elementSpec ident="head">
+               <elementSpec ident="head" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>The HTML head element</gloss>
                   <desc>The head element contains links to (external-only) CSS and JS, as 
                   well as a title element and meta tags. We impose an order here which is not
@@ -91,7 +91,16 @@
                   </content>
                </elementSpec>
                
-               <elementSpec ident="body">
+               <elementSpec ident="title" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Page title.</gloss>
+                  <desc>The plain-text title of the page,
+                  as shown in browser title bars.</desc>
+                  <content>
+                     <textNode/>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="body" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>The principal container for page content as shown in the browser</gloss>
                   <desc>In HTML5, the body element allows all flow content, but we are much more
                   constrained here, allowing only block-level elements.</desc>
