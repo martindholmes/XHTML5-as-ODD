@@ -527,6 +527,7 @@
                   <desc>Defines a group of columns within a table.</desc>
                   <classes>
                      <memberOf key="att.classable"/>
+                     <memberOf key="att.hasSpan"/>
                   </classes>
                   <content>
                      <elementRef key="col" minOccurs="1" maxOccurs="unbounded"/>
@@ -538,6 +539,7 @@
                   <desc>Specifies a table column within a <gi>colgroup</gi> element.</desc>
                   <classes>
                      <memberOf key="att.classable"/>
+                     <memberOf key="att.hasSpan"/>
                   </classes>
                   <content>
                      <empty/>
@@ -1033,6 +1035,19 @@
                      </attDef>
                      <attDef ident="height" usage="opt">
                         <desc>Height in pixels of the image</desc>
+                        <datatype>
+                           <dataRef key="teidata.numeric"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </classSpec>
+               
+               <classSpec ident="att.hasSpan" type="atts" module="xhtml5-as-odd">
+                  <gloss>Groups elements which have <att>span</att>
+                     attributes expressed as integers.</gloss>
+                  <attList>
+                     <attDef ident="span" usage="opt">
+                        <desc>Number of items such as columns spanned by the element bearing this attribute.</desc>
                         <datatype>
                            <dataRef key="teidata.numeric"/>
                         </datatype>
