@@ -100,6 +100,24 @@
                   </content>
                </elementSpec>
                
+               <elementSpec ident="meta" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Header meta tag</gloss>
+                  <desc>Used for specifying character set, metadata, etc.</desc>
+                  <content>
+                     <empty/>
+                  </content>
+                  <attList>
+                     <attDef ident="charset" usage="opt">
+                        <gloss>Character set (use only UTF-8)</gloss>
+                        <valList type="closed">
+                           <valItem ident="UTF-8">
+                              <gloss>The only value we use is UTF-8.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               
                <elementSpec ident="body" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <gloss>The principal container for page content as shown in the browser</gloss>
                   <desc>In HTML5, the body element allows all flow content, but we are much more
@@ -152,7 +170,7 @@
                         <alternate minOccurs="1" maxOccurs="unbounded">
                            <elementRef key="div"/>
                            <elementRef key="dialog"/>
-                           <elementRef key="article" maxOccurs="2"/>
+                           <elementRef key="article" maxOccurs="unbounded"/>
                         </alternate>
                         <!-- We allow script here for staticSearch overrides. -->
                         <elementRef key="script" minOccurs="0" maxOccurs="unbounded"/>

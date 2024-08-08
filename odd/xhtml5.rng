@@ -5,9 +5,9 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2024-06-30T18:35:21Z. 2023. 
-TEI Edition: P5 Version 4.8.0a. Last updated on 16th March 2024, revision 17fdd53c0 
-TEI Edition Location: https://www.tei-c.org/Vault/P5/4.8.0a/ 
+Schema generated from ODD source 2024-08-08T18:29:52Z. 2023. 
+TEI Edition: P5 Version 4.9.0a. Last updated on 8th July 2024, revision 2e33676b1 
+TEI Edition Location: https://www.tei-c.org/Vault/P5/4.9.0a/ 
   
 --><!---->
    <sch:ns xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -802,6 +802,9 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.8.0a/
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The HTML head element) The head element contains links to (external-only) CSS and JS, as well as a title element and meta tags. We impose an order here which is not enforced by the HTML5 standard, placing the single title element first, followed by meta tags, CSS, and script. One of the meta tags must be a charset specification.</a:documentation>
          <group>
             <ref name="xh_title"/>
+            <oneOrMore>
+               <ref name="xh_meta"/>
+            </oneOrMore>
          </group>
       </element>
    </define>
@@ -809,6 +812,22 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.8.0a/
       <element name="title" ns="http://www.w3.org/1999/xhtml">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Page title.) The plain-text title of the page, as shown in browser title bars.</a:documentation>
          <text/>
+      </element>
+   </define>
+   <define name="xh_meta">
+      <element name="meta" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Header meta tag) Used for specifying character set, metadata, etc.</a:documentation>
+         <empty/>
+         <optional>
+            <attribute name="charset">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Character set (use only UTF-8)) </a:documentation>
+               <choice>
+                  <value>UTF-8</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The only value we use is UTF-8.) </a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <empty/>
       </element>
    </define>
    <define name="xh_body">
@@ -851,12 +870,9 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.8.0a/
                <choice>
                   <ref name="xh_div"/>
                   <ref name="xh_dialog"/>
-                  <group>
+                  <oneOrMore>
                      <ref name="xh_article"/>
-                     <optional>
-                        <ref name="xh_article"/>
-                     </optional>
-                  </group>
+                  </oneOrMore>
                </choice>
             </oneOrMore>
          </group>
