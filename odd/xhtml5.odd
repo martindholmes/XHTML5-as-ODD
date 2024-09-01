@@ -84,6 +84,7 @@
                   <content>
                      <sequence>
                         <elementRef key="title" minOccurs="1" maxOccurs="1"/>
+                        <elementRef key="base" minOccurs="0" maxOccurs="1"/>
                         <elementRef key="meta" minOccurs="1" maxOccurs="unbounded"/>
                         <elementRef key="link" minOccurs="0" maxOccurs="unbounded"/>
                         <elementRef key="script" minOccurs="0" maxOccurs="unbounded"/>
@@ -116,6 +117,22 @@
                         </valList>
                      </attDef>
                   </attList>
+               </elementSpec>
+               
+               <elementSpec ident="base" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <gloss>Provides the base URL from which relative URLs are resolved.</gloss>
+                  <desc>The base element allows authors to specify the document base URL for the purposes of parsing URLs, and the name of the default navigable for the purposes of following hyperlinks. The element does not represent any content beyond this information.</desc>
+                  <classes>
+                     <memberOf key="att.hasHref"/>
+                  </classes>
+                  <content>
+                     <empty/>
+                  </content>
+                  <remarks>
+                     <p>A base element, if it has an href attribute, must come before any other elements in the tree that have attributes defined as taking URLs, except the html element (its manifest attribute isn't affected by base elements).</p>
+                     <p>In this schema, we eschew the <att>target</att> attribute because it is not
+                     likely to be useful in the sorts of content we create.</p>
+                  </remarks>
                </elementSpec>
                
                <elementSpec ident="body" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">

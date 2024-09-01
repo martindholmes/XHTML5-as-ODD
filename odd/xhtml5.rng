@@ -5,8 +5,8 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2024-08-08T18:29:52Z. 2023. 
-TEI Edition: P5 Version 4.9.0a. Last updated on 8th July 2024, revision 2e33676b1 
+Schema generated from ODD source 2024-09-01T18:44:15Z. 2023. 
+TEI Edition: P5 Version 4.9.0a. Last updated on 13th August 2024, revision 768578454 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.9.0a/ 
   
 --><!---->
@@ -802,6 +802,9 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.9.0a/
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The HTML head element) The head element contains links to (external-only) CSS and JS, as well as a title element and meta tags. We impose an order here which is not enforced by the HTML5 standard, placing the single title element first, followed by meta tags, CSS, and script. One of the meta tags must be a charset specification.</a:documentation>
          <group>
             <ref name="xh_title"/>
+            <optional>
+               <ref name="xh_base"/>
+            </optional>
             <oneOrMore>
                <ref name="xh_meta"/>
             </oneOrMore>
@@ -827,6 +830,14 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.9.0a/
                </choice>
             </attribute>
          </optional>
+         <empty/>
+      </element>
+   </define>
+   <define name="xh_base">
+      <element name="base" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Provides the base URL from which relative URLs are resolved.) The base element allows authors to specify the document base URL for the purposes of parsing URLs, and the name of the default navigable for the purposes of following hyperlinks. The element does not represent any content beyond this information.</a:documentation>
+         <empty/>
+         <ref name="xh_att.hasHref.attributes"/>
          <empty/>
       </element>
    </define>
