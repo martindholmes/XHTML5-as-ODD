@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href="../odd/xhtml5.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../odd/xhtml5.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Test valid document #2</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header>
+            <h1>Validity testing</h1>
+            <h2>Subheading</h2>
+            <nav>
+                <ul>
+                    <li><a href="mholmes.com/">mholmes.com</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>Test valid document #2</h2>
+            <div>
+                <h3>First div</h3>
+                <p>Para 1.</p>
+            </div>
+            <div>
+                <h3>Second div</h3>
+                <p>Para 1.</p>
+            </div>
+        </main>
+    </body>
+</html>
