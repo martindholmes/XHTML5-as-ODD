@@ -5,7 +5,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2025-12-27T23:16:21Z. 2023. 
+Schema generated from ODD source 2025-12-27T23:29:20Z. 2023. 
 TEI Edition: P5 Version 4.11.0a. Last updated on 10th December 2025, revision e53f3448a 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/ 
   
@@ -864,6 +864,9 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
             <optional>
                <ref name="xh_aside"/>
             </optional>
+            <optional>
+               <ref name="xh_footer"/>
+            </optional>
          </group>
          <ref name="xh_att.classable.attributes"/>
          <ref name="xh_att.identifiable.attributes"/>
@@ -985,6 +988,20 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
          </group>
          <ref name="xh_att.identifiable.attributes"/>
          <ref name="xh_att.classable.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="xh_footer">
+      <element name="footer" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Page footer) The footer element provides a footer area for bottom-of-the-page information such as build and edition numbers.</a:documentation>
+         <oneOrMore>
+            <choice>
+               <ref name="xh_macro.xaoParaContent"/>
+               <ref name="xh_br"/>
+            </choice>
+         </oneOrMore>
+         <ref name="xh_att.classable.attributes"/>
+         <ref name="xh_att.hasTitle.attributes"/>
          <empty/>
       </element>
    </define>

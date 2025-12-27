@@ -20,5 +20,8 @@
                 <p>Para 1.</p>
             </div>
         </main>
+        <footer>
+            This is the footer.
+        </footer>
     </body>
 </html>
