@@ -892,14 +892,16 @@
                      <memberOf key="att.identifiable"/>
                      <memberOf key="att.hasTabindex"/>
                   </classes>
-                  <content>
-                     <macroRef key="macro.xaoParaContent"/>
+                  <content>                     <macroRef key="macro.xaoParaContent"/>
                   </content>
                </elementSpec>
                <elementSpec ident="td" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <desc>A table data cell.</desc>
                   <content>
-                     <macroRef key="macro.xaoParaContent"/>
+                     <alternate minOccurs="0" maxOccurs="unbounded">
+                        <elementRef key="br"/>
+                        <macroRef key="macro.xaoParaContent"/>
+                     </alternate>
                   </content>
                </elementSpec>
                <elementSpec ident="button" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
@@ -932,6 +934,18 @@
                      </attDef>
                   </attList>
                </elementSpec>
+               <elementSpec ident="thead" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>A table heading row.</desc>
+                  <content>
+                     <elementRef key="tr" minOccurs="1" maxOccurs="unbounded"/>
+                  </content>
+               </elementSpec>
+               <elementSpec ident="tbody" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>A table body.</desc>
+                  <content>
+                     <elementRef key="tr" minOccurs="1" maxOccurs="unbounded"/>
+                  </content>
+               </elementSpec>
                <elementSpec ident="tr" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <desc>A table row.</desc>
                   <content>
@@ -957,7 +971,13 @@
                      <sequence>
                         <elementRef key="caption" minOccurs="0" maxOccurs="1"/>
                         <elementRef key="colgroup" minOccurs="0" maxOccurs="unbounded"/>
-                        <elementRef key="tr" minOccurs="1" maxOccurs="unbounded"/>
+                        <alternate minOccurs="1" maxOccurs="1">
+                           <sequence>
+                              <elementRef key="thead" minOccurs="0" maxOccurs="1"/>
+                              <elementRef key="tbody" minOccurs="1" maxOccurs="1"/>
+                           </sequence>
+                           <elementRef key="tr" minOccurs="1" maxOccurs="unbounded"/>
+                        </alternate>
                      </sequence>
                   </content>
                </elementSpec>

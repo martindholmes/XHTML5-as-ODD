@@ -5,7 +5,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2025-12-27T23:29:20Z. 2023. 
+Schema generated from ODD source 2025-12-27T23:56:53Z. 2023. 
 TEI Edition: P5 Version 4.11.0a. Last updated on 10th December 2025, revision e53f3448a 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/ 
   
@@ -1517,7 +1517,12 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
    <define name="xh_td">
       <element name="td" ns="http://www.w3.org/1999/xhtml">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A table data cell.</a:documentation>
-         <ref name="xh_macro.xaoParaContent"/>
+         <zeroOrMore>
+            <choice>
+               <ref name="xh_br"/>
+               <ref name="xh_macro.xaoParaContent"/>
+            </choice>
+         </zeroOrMore>
       </element>
    </define>
    <define name="xh_button">
@@ -1546,6 +1551,22 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
             </attribute>
          </optional>
          <empty/>
+      </element>
+   </define>
+   <define name="xh_thead">
+      <element name="thead" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A table heading row.</a:documentation>
+         <oneOrMore>
+            <ref name="xh_tr"/>
+         </oneOrMore>
+      </element>
+   </define>
+   <define name="xh_tbody">
+      <element name="tbody" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A table body.</a:documentation>
+         <oneOrMore>
+            <ref name="xh_tr"/>
+         </oneOrMore>
       </element>
    </define>
    <define name="xh_tr">
@@ -1577,9 +1598,17 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
             <zeroOrMore>
                <ref name="xh_colgroup"/>
             </zeroOrMore>
-            <oneOrMore>
-               <ref name="xh_tr"/>
-            </oneOrMore>
+            <choice>
+               <group>
+                  <optional>
+                     <ref name="xh_thead"/>
+                  </optional>
+                  <ref name="xh_tbody"/>
+               </group>
+               <oneOrMore>
+                  <ref name="xh_tr"/>
+               </oneOrMore>
+            </choice>
          </group>
          <ref name="xh_att.classable.attributes"/>
          <empty/>
