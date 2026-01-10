@@ -889,6 +889,7 @@
                            <elementRef key="input"/>
                            <elementRef key="label"/>
                            <elementRef key="button"/>
+                           <elementRef key="br"/>
                         </alternate>
                      </sequence>
                   </content>

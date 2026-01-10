@@ -5,7 +5,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2026-01-10T04:26:45Z. 2023. 
+Schema generated from ODD source 2026-01-10T04:34:42Z. 2023. 
 TEI Edition: P5 Version 4.11.0a. Last updated on 4th January 2026, revision dce382e44 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/ 
   
@@ -1506,6 +1506,7 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
                   <ref name="xh_input"/>
                   <ref name="xh_label"/>
                   <ref name="xh_button"/>
+                  <ref name="xh_br"/>
                </choice>
             </oneOrMore>
          </group>
