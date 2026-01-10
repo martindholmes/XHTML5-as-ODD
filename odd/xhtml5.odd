@@ -874,6 +874,107 @@
                      
                   </attList>
                </elementSpec>
+               
+               <elementSpec ident="fieldset" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>A bracketing element, usually intended to contain
+                  form controls.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="model.xaoBlockBody"/>
+                  </classes>
+                  <content>
+                     <sequence>
+                        <elementRef key="legend"/>
+                        <alternate minOccurs="1" maxOccurs="unbounded">
+                           <elementRef key="input"/>
+                           <elementRef key="label"/>
+                           <elementRef key="button"/>
+                        </alternate>
+                     </sequence>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="legend" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>The element providing the caption for a fieldset.</desc>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
+                  </content>
+               </elementSpec>
+               
+               <elementSpec ident="input" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>There are several types of input element, distinguished by their
+                  <att>type</att> attribute.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                     <memberOf key="att.identifiable"/>
+                     <memberOf key="att.hasTabindex"/>
+                  </classes>
+                  <content>
+                     <empty/>
+                  </content>
+                  <constraintSpec ident="radioInputsMustHaveName" scheme="schematron">
+                     <constraint>
+                        <sch:rule context="xh:input[@type='radio']">
+                           <sch:assert test="@name"> 
+                              A radio button must have a name attribute.
+                           </sch:assert>
+                        </sch:rule>
+                     </constraint>
+                  </constraintSpec>
+                  <attList>
+                     <attDef ident="type" usage="req">
+                        <gloss>The type of control</gloss>
+                        <valList type="closed">
+                           <valItem ident="text">
+                              <gloss>A text box for typed input.</gloss>
+                           </valItem>
+                           <valItem ident="radio">
+                              <gloss>A radio button, one of a set with the same <att>name</att> attribute.</gloss>
+                           </valItem>
+                           <valItem ident="checkbox">
+                              <gloss>A checkbox element.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
+                     <attDef ident="name" usage="opt">
+                        <gloss>The name attribute is used to group 
+                        radio buttons together.</gloss>
+                        <datatype>
+                           <dataRef key="teidata.name"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="value" usage="req">
+                        <gloss>The text value of the control.</gloss>
+                        <datatype>
+                           <dataRef key="teidata.text"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+                  <remarks>
+                     <p>The <att>name</att> attribute must be present 
+                     when the <att>type</att>=<val>radio</val>.</p>
+                  </remarks>
+               </elementSpec>
+               
+               <elementSpec ident="label" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
+                  <desc>A label element provides the label for a form control.</desc>
+                  <classes>
+                     <memberOf key="att.classable"/>
+                  </classes>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
+                  </content>
+                  <attList>
+                     <attDef ident="for">
+                        <gloss>The for attribute contains the id of a form control
+                        for which the label provides the caption.</gloss>
+                        <datatype>
+                           <dataRef key="teidata.name"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               
                <elementSpec ident="br" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">
                   <desc>A hard-coded linebreak. Avoid unless you absolutely need it. Use it at the 
                   end of lines in poems.</desc>
@@ -892,7 +993,8 @@
                      <memberOf key="att.identifiable"/>
                      <memberOf key="att.hasTabindex"/>
                   </classes>
-                  <content>                     <macroRef key="macro.xaoParaContent"/>
+                  <content>
+                     <macroRef key="macro.xaoParaContent"/>
                   </content>
                </elementSpec>
                <elementSpec ident="td" ns="http://www.w3.org/1999/xhtml" module="xhtml5-as-odd">

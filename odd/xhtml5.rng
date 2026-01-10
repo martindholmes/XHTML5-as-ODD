@@ -5,8 +5,8 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2025-12-27T23:56:53Z. 2023. 
-TEI Edition: P5 Version 4.11.0a. Last updated on 10th December 2025, revision e53f3448a 
+Schema generated from ODD source 2026-01-10T04:26:45Z. 2023. 
+TEI Edition: P5 Version 4.11.0a. Last updated on 4th January 2026, revision dce382e44 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/ 
   
 --><!---->
@@ -1496,6 +1496,88 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
          <empty/>
       </element>
    </define>
+   <define name="xh_fieldset">
+      <element name="fieldset" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A bracketing element, usually intended to contain form controls.</a:documentation>
+         <group>
+            <ref name="xh_legend"/>
+            <oneOrMore>
+               <choice>
+                  <ref name="xh_input"/>
+                  <ref name="xh_label"/>
+                  <ref name="xh_button"/>
+               </choice>
+            </oneOrMore>
+         </group>
+         <ref name="xh_att.classable.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="xh_legend">
+      <element name="legend" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The element providing the caption for a fieldset.</a:documentation>
+         <ref name="xh_macro.xaoParaContent"/>
+      </element>
+   </define>
+   <define name="xh_input">
+      <element name="input" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">There are several types of input element, distinguished by their <code xmlns="http://www.w3.org/1999/xhtml"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0">@type</code> attribute.</a:documentation>
+         <empty/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="xhtml5-as-odd-input-radioInputsMustHaveName-constraint-rule-3">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:gcse="http://www.google.com/cse"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:xh="http://www.w3.org/1999/xhtml"
+                      context="xh:input[@type='radio']">
+               <sch:assert test="@name"> 
+                              A radio button must have a name attribute.
+                           </sch:assert>
+            </sch:rule>
+         </pattern>
+         <ref name="xh_att.classable.attributes"/>
+         <ref name="xh_att.identifiable.attributes"/>
+         <ref name="xh_att.hasTabindex.attributes"/>
+         <attribute name="type">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The type of control) </a:documentation>
+            <choice>
+               <value>text</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A text box for typed input.) </a:documentation>
+               <value>radio</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A radio button, one of a set with the same name attribute.) </a:documentation>
+               <value>checkbox</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(A checkbox element.) </a:documentation>
+            </choice>
+         </attribute>
+         <optional>
+            <attribute name="name">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The name attribute is used to group radio buttons together.) </a:documentation>
+               <data type="Name"/>
+            </attribute>
+         </optional>
+         <attribute name="value">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The text value of the control.) </a:documentation>
+            <data type="string"/>
+         </attribute>
+         <empty/>
+      </element>
+   </define>
+   <define name="xh_label">
+      <element name="label" ns="http://www.w3.org/1999/xhtml">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A label element provides the label for a form control.</a:documentation>
+         <ref name="xh_macro.xaoParaContent"/>
+         <ref name="xh_att.classable.attributes"/>
+         <optional>
+            <attribute name="for">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The for attribute contains the id of a form control for which the label provides the caption.) </a:documentation>
+               <data type="Name"/>
+            </attribute>
+         </optional>
+         <empty/>
+      </element>
+   </define>
    <define name="xh_br">
       <element name="br" ns="http://www.w3.org/1999/xhtml">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A hard-coded linebreak. Avoid unless you absolutely need it. Use it at the end of lines in poems.</a:documentation>
@@ -1648,6 +1730,7 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0a/
          <ref name="xh_dialog"/>
          <ref name="xh_cite"/>
          <ref name="xh_figure"/>
+         <ref name="xh_fieldset"/>
          <ref name="xh_button"/>
          <ref name="xh_table"/>
       </choice>
@@ -1898,7 +1981,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
                value="concat('[', $straightDouble, $straightApos, ']')"/>
    </sch:pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-noQuotesInText-constraint-rule-3">
+            id="xhtml5-as-odd-xao-noQuotesInText-constraint-rule-4">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1912,7 +1995,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-noBadImageFilenames-constraint-rule-4">
+            id="xhtml5-as-odd-xao-noBadImageFilenames-constraint-rule-5">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1924,7 +2007,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-spacesAfterPeriods-constraint-rule-5">
+            id="xhtml5-as-odd-xao-spacesAfterPeriods-constraint-rule-6">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1936,7 +2019,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-noSpacedPeriodEllipses-constraint-rule-6">
+            id="xhtml5-as-odd-xao-noSpacedPeriodEllipses-constraint-rule-7">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1949,7 +2032,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-noSpacesInHrefs-constraint-rule-7">
+            id="xhtml5-as-odd-xao-noSpacesInHrefs-constraint-rule-8">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1961,7 +2044,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-noLinksInLinks-constraint-rule-8">
+            id="xhtml5-as-odd-xao-noLinksInLinks-constraint-rule-9">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1973,7 +2056,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-periodsAndCommasOutsideLinks-constraint-rule-9">
+            id="xhtml5-as-odd-xao-periodsAndCommasOutsideLinks-constraint-rule-10">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1985,7 +2068,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-useProperEllipsis-constraint-rule-10">
+            id="xhtml5-as-odd-xao-useProperEllipsis-constraint-rule-11">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -1997,7 +2080,7 @@ Suggested values include: 1] en (English); 2] fr (French); 3] it (Italian); 4] j
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="xhtml5-as-odd-xao-idShouldMatchFilename-constraint-rule-11">
+            id="xhtml5-as-odd-xao-idShouldMatchFilename-constraint-rule-12">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:gcse="http://www.google.com/cse"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"

@@ -19,6 +19,15 @@
                 <h3>Second div</h3>
                 <p>Para 1.</p>
             </div>
+            <div>
+                <fieldset>
+                    <legend>Radio buttons</legend>
+                    <input id="numOne" type="radio" name="num" value="one"/>
+                    <label for="numnameOne">one</label>
+                    <input id="numTwo" type="radio" name="num" value="two"/>
+                    <label for="numTwo">two</label>
+                </fieldset>
+            </div>
         </main>
         <footer>
             This is the footer.
