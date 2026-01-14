@@ -913,15 +913,25 @@
                   <content>
                      <empty/>
                   </content>
-                  <constraintSpec ident="radioInputsMustHaveName" scheme="schematron">
+                  <constraintSpec ident="radioInputsMustHaveNameAndValue" scheme="schematron">
                      <constraint>
                         <sch:rule context="xh:input[@type='radio']">
-                           <sch:assert test="@name"> 
-                              A radio button must have a name attribute.
+                           <sch:assert test="@name and @value"> 
+                              ERROR: A radio button must have @name and @value.
                            </sch:assert>
                         </sch:rule>
                      </constraint>
                   </constraintSpec>
+                  <constraintSpec ident="someAttsOnlyForText" scheme="schematron">
+                     <constraint>
+                        <sch:rule context="xh:input[@autocomplete or @placeholder]">
+                           <sch:assert test="@type='text'"> 
+                              ERROR: Only a text input may have @autocomplete or @placeholder.
+                           </sch:assert>
+                        </sch:rule>
+                     </constraint>
+                  </constraintSpec>
+                  
                   <attList>
                      <attDef ident="type" usage="req">
                         <gloss>The type of control</gloss>
@@ -944,8 +954,26 @@
                            <dataRef key="teidata.name"/>
                         </datatype>
                      </attDef>
-                     <attDef ident="value" usage="req">
+                     <attDef ident="value" usage="opt">
                         <gloss>The text value of the control.</gloss>
+                        <datatype>
+                           <dataRef key="teidata.text"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="autocomplete" usage="opt">
+                        <gloss>Tells the browser whether or not to autocomplete the text in the control.</gloss>
+                        <valList type="closed">
+                           <valItem ident="on">
+                              <gloss>Tells the browser to use autocomplete. This is the 
+                              default if the attribute is absent.</gloss>
+                           </valItem>
+                           <valItem ident="off">
+                              <gloss>Tells the browser not to use autocomplete.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
+                     <attDef ident="placeholder" usage="opt">
+                        <gloss>Provides placeholder text typically shown greyed-out in the control.</gloss>
                         <datatype>
                            <dataRef key="teidata.text"/>
                         </datatype>
@@ -1014,6 +1042,7 @@
                      <memberOf key="att.classable"/>
                      <memberOf key="att.identifiable"/>
                      <memberOf key="att.hasTabindex"/>
+                     <memberOf key="att.hasAriaLabel"/>
                   </classes>
                   <content>
                      <macroRef key="macro.xaoParaContent"/>
@@ -1258,6 +1287,19 @@
                         <desc>Number of items such as columns spanned by the element bearing this attribute.</desc>
                         <datatype>
                            <dataRef key="teidata.numeric"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </classSpec>
+               
+               <classSpec ident="att.hasAriaLabel" type="atts" module="xhtml5-as-odd">
+                  <gloss>Groups elements which have <att>aria-label</att>
+                     attributes to identify their functionality to accessibility tools.</gloss>
+                  <attList>
+                     <attDef ident="aria-label" usage="opt">
+                        <desc>Identifies the functionality of the element so labelled.</desc>
+                        <datatype>
+                           <dataRef key="teidata.text"/>
                         </datatype>
                      </attDef>
                   </attList>
