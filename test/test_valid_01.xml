@@ -12,10 +12,16 @@
         <main>
             <h2>Test valid document #1</h2>
             <div>
+                <ul>
+                    <li><a href="#div1">First div</a></li>
+                    <li><a href="#div2">Second div</a></li>
+                </ul>
+            </div>
+            <div id="div1">
                 <h3>First div</h3>
                 <p>Para 1.</p>
             </div>
-            <div>
+            <div id="div2">
                 <h3>Second div</h3>
                 <p>Para 1.</p>
             </div>
@@ -23,7 +29,7 @@
                 <fieldset>
                     <legend>Radio buttons</legend>
                     <input id="numOne" type="radio" name="num" value="one"/>
-                    <label for="numnameOne">one</label><br/>
+                    <label for="numOne">one</label><br/>
                     <input id="numTwo" type="radio" name="num" value="two"/>
                     <label for="numTwo">two</label>
                 </fieldset>
