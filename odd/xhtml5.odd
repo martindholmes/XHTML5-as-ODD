@@ -1043,6 +1043,7 @@
                      <memberOf key="att.identifiable"/>
                      <memberOf key="att.hasTabindex"/>
                      <memberOf key="att.hasAriaLabel"/>
+                     <memberOf key="att.hasAriaExpansion"/>
                   </classes>
                   <content>
                      <macroRef key="macro.xaoParaContent"/>
@@ -1305,6 +1306,35 @@
                   </attList>
                </classSpec>
                
+               <classSpec ident="att.hasAriaExpansion" type="atts" module="xhtml5-as-odd">
+                  <gloss>Groups elements which have <att>aria-expanded</att> and <att>aria-controls</att>
+                     attributes, which signal to screen-readers whether a connected element is visible or not.</gloss>
+                  <constraintSpec ident="expansionControlNeedsAllAtts" scheme="schematron">
+                     <constraint>
+                        <sch:rule context="xh:*[@aria-expanded or @aria-controls]">
+                           <sch:assert test="@aria-expanded and @aria-controls">
+                              ERROR: Any element which has one of @aria-expanded or @aria-controls
+                              must also have the other one.
+                           </sch:assert>
+                        </sch:rule>
+                     </constraint>
+                  </constraintSpec>
+                  <attList>
+                     <attDef ident="aria-expanded" usage="opt">
+                        <desc>Signifies the expanded state of the linked control.</desc>
+                        <datatype>
+                           <dataRef key="teidata.boolean"/>
+                        </datatype>
+                     </attDef>
+                     <attDef ident="aria-controls" usage="opt">
+                        <desc>Contains the id of the linked control.</desc>
+                        <datatype>
+                           <dataRef key="teidata.name"/>
+                        </datatype>
+                     </attDef>
+                  </attList>
+               </classSpec>
+               
                <!--        Global Schematron constraints    -->
                <constraintSpec ident="schVariables" scheme="schematron">
                   <constraint>
@@ -1407,6 +1437,17 @@
                      </sch:rule>
                   </constraint>
                </constraintSpec>
+               <constraintSpec ident="xao-pointersShouldPointToThings" scheme="schematron">
+                  <constraint>
+                     <sch:rule context="xh:*[@for or @aria-controls or @href[matches(., '^#.+')]]">
+                        <sch:let name="targId" value="if (@for) then xs:string(@for) else if (@aria-controls) then xs:string(@aria-controls) else substring-after(@href, '#')"/>
+                        <sch:assert test="//*[@id eq $targId]">
+                           A local pointer attribute must point to an id that exists in the document.
+                        </sch:assert>
+                     </sch:rule>
+                  </constraint>
+               </constraintSpec>
+               
             </schemaSpec>
          </div>
       </back>
