@@ -5,7 +5,7 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.w3.org/1999/xhtml"><!--
-Schema generated from ODD source 2026-01-14T17:35:50Z. 2023. 
+Schema generated from ODD source 2026-01-16T00:13:35Z. 2023. 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -1592,6 +1592,15 @@ TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/
             <attribute name="placeholder">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Provides placeholder text typically shown greyed-out in the control.) </a:documentation>
                <data type="string"/>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="checked">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(Sets the checked status of the control. Only for radio and checkbox controls.) </a:documentation>
+               <choice>
+                  <value>checked</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(The control is checked.) </a:documentation>
+               </choice>
             </attribute>
          </optional>
          <empty/>

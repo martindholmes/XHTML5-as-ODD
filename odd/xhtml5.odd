@@ -978,6 +978,14 @@
                            <dataRef key="teidata.text"/>
                         </datatype>
                      </attDef>
+                     <attDef ident="checked" usage="opt">
+                        <gloss>Sets the checked status of the control. Only for radio and checkbox controls.</gloss>
+                        <valList type="closed">
+                           <valItem ident="checked">
+                              <gloss>The control is checked.</gloss>
+                           </valItem>
+                        </valList>
+                     </attDef>
                   </attList>
                   <remarks>
                      <p>The <att>name</att> attribute must be present 
